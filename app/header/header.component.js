@@ -33,10 +33,12 @@ angular.module('header').component('header', {
       if ($scope.user.username.length >= 5 && $scope.user.password.length >= 5) {
         $http.post('/auth/login', {"username": $scope.user.username, 
                               "password": $scope.user.password}).then(function(data) {
-
-            console.log(data);
-            if (!data) {
+            console.log(data.data);
+            if (data.data) {
               alert("Logged in");
+              $("#loginForm").hide();
+              $("#signupForm").hide();
+              if ($location.path() == '/splash') $location.path('/');
             }
             else {
               alert("Please check your username and password");
@@ -58,7 +60,11 @@ angular.module('header').component('header', {
           $http.post('/newuser', {"username": $scope.user.username, 
                                 "password": $scope.user.password}).then(function(data) {
               // TODO Should log in too
+              console.log(data.data);
               alert("User created");
+              $("#loginForm").hide();
+              $("#signupForm").hide();
+              if ($location.path() == '/splash') $location.path('/');
             }, function (err) {
               alert("Error in creating username. May already exist");
           });
