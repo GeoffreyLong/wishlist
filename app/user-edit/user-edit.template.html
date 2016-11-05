@@ -1,0 +1,72 @@
+<div class="importantFixedDiv" layout="column" ng-if="!checkEquality()">
+  <md-button class="importantFixedButton" ng-click="saveChanges()"> 
+    Save Changes
+  </md-button>
+  <md-button class="importantFixedButton" ng-click="resetChanges()"> 
+    Undo Changes
+  </md-button>
+</div>
+
+<span class="md-display-2"> User Information </span>
+<div id="userInfoEditDiv">
+  <form name="userForm">
+    <md-card class="editCard">
+      <div class="innerEditDiv"> 
+        <div id="descriptionPanel" layout="row" layout-align-gt-sm="center center" layout-xs="column" layout-sm="column">
+          <!-- 
+                TODO this might be too sparse to lay side by side with a map
+                See if I can add more content to this
+                Could add like a "most popular dish" or something
+                Maybe I could even dynamically place it given the size of the description
+          -->
+          <div flex id="nonMapDiv">
+            <div layout="row" layout-align="space-between center">
+              <md-input-container class="md-block">
+                <label class="md-title"> Full Name: </label>
+                <input  type="text" name="storeTitle" ng-model="user.fullName" 
+                        maxlength="30" md-maxlength="30" required />
+                <div ng-messages="userForm.fullName.$error">
+                  <div ng-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+
+              <img  ng-if="user.profilePhoto" id="profilePhotoEdit" 
+                    src="{{user.profilePhoto}}" alt="Profile Picture" 
+                    ng-click="showConfirm($event, user.profilePhoto, 0)"/>
+              <img  ng-if="!user.profilePhoto" id="profilePhotoEdit" 
+                    src="img/default_profile.jpg" alt="Profile Picture" 
+                    ng-click="showConfirm($event, user.profilePhoto, 0)"/>
+            </div>
+
+            <md-input-container class="md-block">
+              <label class='md-title'> User Description: </label>
+              <!-- TODO restrict from pressing "enter" a bunch... or at all -->
+              <textarea class="descriptionEdit" name="description"
+                        ng-model="user.description" md-maxlength="300" maxlength="300" 
+                        required>
+              </textarea>
+              <div ng-messages="userForm.description.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+
+          </div>
+          
+          <div flex>
+            <md-input-container class="md-block" id="addressEditContainer">
+              <label class="md-title"> Shipping Address: </label>
+              <input  id="addressEdit" places-auto-complete types="['geocode']" ng-model="user.address.formatted" 
+                      on-place-changed="placeChanged()" name="address" required/>
+              <div ng-messages="userForm.address.$error">
+                <div ng-message="required">This is required.</div>
+              </div>
+            </md-input-container>
+            <ng-map center="{{user.address.lat}}, {{user.address.lng}}" zoom="14">
+              <marker position="{{user.address.lat}}, {{user.address.lng}}" title="Shipping Address"></marker> 
+            </ng-map>
+          </div>
+        </div>
+      </div>
+    </md-card>
+  </form>
+</div>

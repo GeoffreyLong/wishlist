@@ -73,4 +73,41 @@ router.get('/auth/session', function(req, res) {
   res.send(session);
 });
 
+router.get('/user/:userId', function(req, res) {
+  console.log(req.params);
+  User.findById(req.params.userId, function(err, user) {
+    if (err) {
+      console.log(err);
+      res.status(500).send(err);
+    }
+    else {
+      res.status(200).send(user);
+    }
+  });
+});
+
+router.post('/user', function(req, res) {
+  var user = req.body.data;
+  User.findByIdAndUpdate(user._id, {
+    "$set": {
+      "username": user.username,
+      "password": user.password,
+      "fullName": user.fullName,
+      "description": user.description,
+      "address": {
+        "formatted": user.address.formatted,
+        "lat": user.address.lat,
+        "lng": user.address.lng
+      }
+    }
+  }, function(err, retUser) {
+    if (err) {
+      res.status(400).send(err);
+    }
+    else {
+      res.status(200).send(user);
+    }
+  });
+});
+
 module.exports = router;

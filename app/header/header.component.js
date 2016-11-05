@@ -5,7 +5,7 @@ angular.module('header').component('header', {
     $scope.user = {};
 
     $scope.routeToIndex = function() {
-      $location.path('/');
+      $location.path('/user/581da12ec2141a371674dabe/edit');
     }
 
     $("#loginForm").hide();
@@ -38,7 +38,7 @@ angular.module('header').component('header', {
               alert("Logged in");
               $("#loginForm").hide();
               $("#signupForm").hide();
-              if ($location.path() == '/splash') $location.path('/');
+              $location.path('/user/' + data.data);
             }
             else {
               alert("Please check your username and password");
@@ -64,7 +64,7 @@ angular.module('header').component('header', {
               alert("User created");
               $("#loginForm").hide();
               $("#signupForm").hide();
-              if ($location.path() == '/splash') $location.path('/');
+              $location.path('/user/' + data.data + '/edit');
             }, function (err) {
               alert("Error in creating username. May already exist");
           });

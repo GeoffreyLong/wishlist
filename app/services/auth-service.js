@@ -65,10 +65,10 @@ angular
               deferred.resolve(session);
             }
             else{
-              deferred.reject({user: false});
+              deferred.reject({authenticated: false});
             }
           }, function(err){
-            deferred.reject({user: false});
+            deferred.reject({authenticated: false});
           });
         }
         return deferred.promise;
