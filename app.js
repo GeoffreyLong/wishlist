@@ -18,6 +18,15 @@ app.use(morgan('dev'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
+// Start up the DB
+mongoose.connect('mongodb://localhost/wishlist', function (error) {
+  if (error) {
+      console.log(error);
+  }
+  else{
+    console.log('Successfully Connected');
+  }
+});
 
 app.use(stylus({
   src: path.join(__dirname, 'app'),
@@ -46,7 +55,7 @@ passport.use(new LocalStrategy({
       if (!user) {
         return done(null, false, { message: 'Incorrect username.' });
       }
-      if (!user.validPassword(password)) {
+      if (user.password !== password) {
         return done(null, false, { message: 'Incorrect password.' });
       }
       return done(null, user);

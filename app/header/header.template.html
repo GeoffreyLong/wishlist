@@ -4,13 +4,48 @@
   <div id="name" ng-click="routeToIndex()">
     APPNAME
   </div>
-  <div>
-    <div ng-if="!session.user.username" id="loginContainer">
-      <md-button> login </md-button>
-      <md-button> sign-up </md-button>
+  <div id="superLoginContainer" layout="column" layout-align="center center">
+    <div>
+      <div ng-if="!session.user.username" id="loginContainer">
+        <md-button id="login" ng-click="showLogin($event)"> login </md-button>
+        <md-button id="signup" ng-click="showSignup($event)"> sign-up </md-button>
+      </div>
+      <div ng-if="session.user.username" id="loginContainer">
+        {{session.user.username}}
+      </div>
     </div>
-    <div ng-if="session.user.username" id="loginContainer">
-      {{session.user.username}}
+    <div id="dropdownForm">
+      <div id="loginForm" layout="column">
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="user.username">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Password</label>
+          <input ng-model="user.password" type="password">
+        </md-input-container>
+
+        <md-button ng-click="loginClick()"> Submit </md-button>
+      </div>
+      <div id="signupForm" layout="column">
+        <md-input-container>
+          <label>Username</label>
+          <input ng-model="user.username">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Password</label>
+          <input ng-model="user.password" type="password">
+        </md-input-container>
+
+        <md-input-container>
+          <label>Password</label>
+          <input ng-model="user.passwordCheck" type="password">
+        </md-input-container>
+
+        <md-button ng-click="signupClick()"> Submit </md-button>
+      </div>
     </div>
   </div>
 </md-toolbar>

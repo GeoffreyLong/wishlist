@@ -10,5 +10,25 @@ body {
   padding-top: 65px;
 }
 header #topBar {
+  height: 55px;
   background-color: #123456;
+}
+header #topBar #superLoginContainer {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+}
+header #topBar #superLoginContainer #signup.clicked {
+  background-color: #2e4a65;
+}
+header #topBar #superLoginContainer #login.clicked {
+  background-color: #2e4a65;
+}
+header #topBar #superLoginContainer #dropdownForm {
+  margin-top: -6px;
+  background-color: #2e4a65;
+  width: 100%;
+}
+header #topBar #superLoginContainer #dropdownForm md-input-container {
+  margin-bottom: 0;
 }
