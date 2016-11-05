@@ -2,18 +2,38 @@
             layout="column" layout-align="space-between start" layout-gt-sm="row" 
             layout-align-sm="center center" layout-align-xs="center center">
   <div flex layout="column" ng-repeat="row in children">
-    <md-card ng-repeat="child in row">
-      <img ng-src="https://s-media-cache-ak0.pinimg.com/736x/de/45/fd/de45fd6e66b951f3687871e4a3f487b6.jpg" class="md-card-image" alt="Child Image">
+
+  <md-card ng-repeat="child in row">
+    <img ng-src="{{child.image}}" class="crop" alt="">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline"> {{child.name}},  {{child.age}}</span>
+        </md-card-title-text>
+      </md-card-title>
+
       <md-card-content>
-        <div layout="row" layout-align="space-between center">
-          <div>
-            <span class='md-display-3' ng-click="goToChild(child._id)"> {{child.name}} </span>
-          </div>
-          <div>
-            <span class='md-display-1'> {{child.age}} </span>
-          </div>
-        </div>
+      
+          {{child.address}} <br> {{child.description}}
+        
       </md-card-content>
+
+      <md-card-actions layout="column" layout-align="end center">
+        <md-button>Read more</md-button>
+      </md-card-actions>
     </md-card>
   </div>
 </md-content>
+
+<footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h3>Wishlist</h3>
+                        <p>© 2016 GTG HackHolyoke. Site Designed and Modified from <a target="_blank" href="http://www.themeinthebox.com">ThemeintheBox.com</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="text-right social"><i class="typcn typcn-social-facebook-circular"></i><i class="typcn typcn-social-twitter-circular"></i><i class="typcn typcn-social-tumbler-circular"></i><i class="typcn typcn-social-github-circular"></i><i class="typcn typcn-social-dribbble-circular"></i></p>
+                    </div>
+                </div>
+            </div>
+        </footer>
