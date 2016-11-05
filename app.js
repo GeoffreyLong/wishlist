@@ -2,13 +2,22 @@ var express = require('express');
 var routes = require('./routes/index');
 var path = require('path');
 var morgan = require('morgan');
-
+var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 var stylus = require('express-stylus');
 var nib = require('nib');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+var session = require('express-session');
+
+var User = require('./models/user.js');
 
 var app = express();
 
 app.use(morgan('dev')); 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 
 app.use(stylus({
   src: path.join(__dirname, 'app'),
@@ -16,6 +25,40 @@ app.use(stylus({
   import: ['nib']
 }));
 app.use(express.static(path.join(__dirname, 'app')));
+
+
+app.use(session({ 
+  secret: 's3ssi0nsecraet17',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+passport.use(new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+  }, function(username, password, done) {
+    console.log(username);
+    User.findOne({ username: username }, function (err, user) {
+      if (err) { return done(err); }
+      if (!user) {
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+passport.deserializeUser(function(user, done) {
+  done(null, user);
+});
 
 // Ignore requests for favicon
 app.get('/favicon.ico', function(req, res) {

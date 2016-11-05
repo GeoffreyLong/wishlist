@@ -6,12 +6,16 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "express": "~4.9.0",
+    "express-session": "^1.14.2",
     "express-stylus": "^0.1.0",
+    "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
     "nib": "^1.1.2",
     "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
     "request": "^2.74.0",
     "stylus": "0.42.3"
   }

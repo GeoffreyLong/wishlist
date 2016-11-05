@@ -3,10 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>WishList</title>
+    <base href="/">
     <!-- Angular --> 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+
 
     <!-- Angular Material -->
     <link rel="stylesheet" type="text/css" href="bower_components/angular-material/angular-material.min.css"/>
@@ -18,16 +21,14 @@
     <script src="app.module.js"></script>
     <script src="app.config.js"></script>
 
+    <script src="services/auth-service.js"></script>
 
     <script src="header/header.module.js"></script>
     <script src="header/header.component.js"></script>
-
     <script src="splash/splash.module.js"></script>
     <script src="splash/splash.component.js"></script>
-
     <script src="index/index.module.js"></script>
     <script src="index/index.component.js"></script>
-
   </head>
   <body>
     <header></header>
