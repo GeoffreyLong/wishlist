@@ -2,14 +2,23 @@ angular.module('header').component('header', {
   templateUrl: 'header/header.template.html',
   controller: function HeaderController($scope, $location, authService, $http) {
     $scope.session = authService.getSessionSynch();
+    authService.getUserSession().then(function(session) {
+      $scope.session = session; 
+    });
     $scope.user = {};
 
     $scope.routeToIndex = function() {
-      $location.path('/user/581da12ec2141a371674dabe/edit');
+      $location.path('/');
     }
 
     $("#loginForm").hide();
     $("#signupForm").hide();
+
+    $scope.logout = function() {
+      authService.logout();
+      $scope.session.user = undefined;
+      $scope.user = {};
+    }
 
     $scope.showLogin = function(ev) {
       $("#login").toggleClass('clicked');
@@ -35,6 +44,9 @@ angular.module('header').component('header', {
                               "password": $scope.user.password}).then(function(data) {
             console.log(data.data);
             if (data.data) {
+              authService.getUserSession().then(function(session) {
+                $scope.session = session; 
+              });
               alert("Logged in");
               $("#loginForm").hide();
               $("#signupForm").hide();

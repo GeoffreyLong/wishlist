@@ -41,6 +41,7 @@ router.post('/newuser', function(req, res) {
 });
 
 router.post('/auth/login', function(req, res) {
+  console.log(req.body)
   passport.authenticate('local', function(err, user, info) {
     if (err) { 
       console.log(err);
@@ -59,6 +60,8 @@ router.post('/auth/login', function(req, res) {
         res.status(500).send(user); 
       }
       console.log("case 4");
+      if (req.session.user == undefined) req.session.user = {};
+      req.session.user.username = req.body.username;
       return res.status(200).send(user);
     });
   })(req, res);
@@ -67,20 +70,17 @@ router.post('/auth/login', function(req, res) {
 router.get('/auth/logout', function(req, res){
   // TODO error handling here and on the front end side of this
   req.logout();
+  req.session.user = undefined;
   res.status(200).send("");
 });
 
 router.get('/auth/session', function(req, res) {
   var session = {};
-  session.user = {};
-  console.log(req.user);
-  if (req.user && req.user.username) {
-    session.user.username = req.user.username;
-    session.user.password = req.user.password;
-  }
+  session.user = req.session.user;
   session.isSessioned = req.session.isSessioned;
   req.session.isSessioned = true;
-  console.log("hello Session:" + session.user);
+  console.log("hello Session:");
+  console.log(session.user);
   res.send(session);
 });
 
@@ -116,6 +116,7 @@ router.post('/user', function(req, res) {
       res.status(400).send(err);
     }
     else {
+      req.session.username = user.username;
       res.status(200).send(user);
     }
   });
