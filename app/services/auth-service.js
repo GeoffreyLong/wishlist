@@ -37,7 +37,8 @@ angular
           deferred.resolve(session);
         }
         else {
-          getSessionFromDB().then(function(session){
+          getSessionFromDB().then(function(sesh){
+            session = sesh;
             console.log(session);
             if (session && (session.user || session.isSessioned)) {
               deferred.resolve(session);
@@ -59,7 +60,8 @@ angular
           deferred.resolve(session);
         }
         else {
-          getSessionFromDB().then(function(session){
+          getSessionFromDB().then(function(sesh){
+            session = sesh
             console.log(session);
             if (session && session.user && session.user.username) {
               deferred.resolve(session);

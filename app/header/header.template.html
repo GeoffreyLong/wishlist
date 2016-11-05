@@ -1,17 +1,22 @@
 <md-toolbar id="topBar" layout="row" layout-align="space-between center" 
             class="md-whiteframe-z2" 
             style="padding:0px; margin-bottom:0px; padding-left: 10px; position:fixed; top: 0px">
-  <md-button id="name" href="#!/splash">
+  <div id="name" ng-click="routeToIndex()">
     WishList
-  </md-button>
+  </div>
+  <div ng-if="session.user.username" layout="row">
+    <div id="loginContainer">
+      {{session.user.username}}
+    </div>
+    <div>
+      <md-button ng-click="logout()"> Log-out </md-button>
+    </div>
+  </div>
   <div id="superLoginContainer" layout="column" layout-align="center center">
     <div>
       <div ng-if="!session.user.username" id="loginContainer">
         <md-button id="login" ng-click="showLogin($event)"> login </md-button>
         <md-button id="signup" ng-click="showSignup($event)"> sign-up </md-button>
-      </div>
-      <div ng-if="session.user.username" id="loginContainer">
-        {{session.user.username}}
       </div>
     </div>
     <div id="dropdownForm">

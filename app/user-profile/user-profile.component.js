@@ -2,6 +2,10 @@ angular.module('userProfile').component('userProfile', {
   templateUrl: 'user-profile/user-profile.template.html',
   controller: function UserProfileController($scope, $http, $location, authService) {
     $scope.user = {};
+    $scope.session = {};
+    authService.getUserSession().then(function(session) {
+      $scope.session = session;
+    });
     $http.get($location.path()).then(function(user) {
       $scope.user = user.data;
       $scope.user.lat = $scope.user.lat.toFixed(1);
@@ -13,7 +17,7 @@ angular.module('userProfile').component('userProfile', {
 
 
     $scope.checkOwnership = function() {
-      var session = authService.getSessionSynch();
+      var session = $scope.session;
       console.log(session);
       console.log($scope.user);
       return (session && session.user
