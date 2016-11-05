@@ -5,6 +5,7 @@ var mongoose = require("mongoose");
 var User = require("../models/user.js");
 var router = express.Router();
 
+
 router.get('/', function(req, res) {
   res.sendFile(path.resolve('index.html'));
 });
@@ -23,7 +24,12 @@ router.post('/newuser', function(req, res) {
             res.status(400).send(err);
           }
           else {
-            res.status(200).send(returnUser._id);
+            req.login(newUser, function(err) {
+              if (err) { 
+                res.status(400).send(returnUser._id);
+              }
+              res.status(200).send(returnUser._id);
+            });
           }
         });
       }
@@ -66,10 +72,15 @@ router.get('/auth/logout', function(req, res){
 
 router.get('/auth/session', function(req, res) {
   var session = {};
-  session.user = req.user;
+  session.user = {};
+  console.log(req.user);
+  if (req.user && req.user.username) {
+    session.user.username = req.user.username;
+    session.user.password = req.user.password;
+  }
   session.isSessioned = req.session.isSessioned;
   req.session.isSessioned = true;
-  console.log("hello Session");
+  console.log("hello Session:" + session.user);
   res.send(session);
 });
 

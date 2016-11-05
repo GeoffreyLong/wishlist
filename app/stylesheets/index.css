@@ -46,12 +46,20 @@ header #topBar #superLoginContainer #dropdownForm md-input-container {
 }
 #userInfoEditDiv {
   padding: 20px;
+  padding-top: 0;
+  margin-top: 0;
 }
 #userInfoEditDiv .editCard {
   padding: 20px;
 }
 #userInfoEditDiv .editCard #nonMapDiv {
   padding-right: 20px;
+}
+#gifts {
+  padding: 0px 20px 20px 20px;
+}
+#gifts .gift {
+  padding: 20px;
 }
 /* Overridde the margins and whatnot of the address entry input */
 #addressEditContainer {

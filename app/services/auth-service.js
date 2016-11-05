@@ -74,6 +74,7 @@ angular
         return deferred.promise;
       }
 
+      // Really just from server
       function getSessionFromDB(){
         var deferred = $q.defer();
 

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "aws-sdk": "^2.6.15",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "express": "~4.9.0",
@@ -15,6 +16,7 @@
     "mongoose": "^4.6.6",
     "morgan": "^1.7.0",
     "nib": "^1.1.2",
+    "node-uuid": "^1.4.7",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "request": "^2.74.0",

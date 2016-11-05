@@ -7,7 +7,9 @@
   </md-button>
 </div>
 
-<span class="md-display-2"> User Information </span>
+<div layout="column" style="padding-left: 40px; padding-bottom: 0; margin-bottom: 0">
+  <span class="md-display-2"> User Information </span>
+</div>
 <div id="userInfoEditDiv">
   <form name="userForm">
     <md-card class="editCard">
@@ -23,7 +25,7 @@
             <div layout="row" layout-align="space-between center">
               <md-input-container class="md-block">
                 <label class="md-title"> Full Name: </label>
-                <input  type="text" name="storeTitle" ng-model="user.fullName" 
+                <input  type="text" name="fullName" ng-model="user.fullName" 
                         maxlength="30" md-maxlength="30" required />
                 <div ng-messages="userForm.fullName.$error">
                   <div ng-message="required">This is required.</div>
@@ -50,6 +52,15 @@
               </div>
             </md-input-container>
 
+            <div layout="row">
+              <div flex=80>
+                <md-input-container class="md-block">
+                  <label class="md-title"> Amazon gift id: </label>
+                  <input  type="text" name="gift" ng-model="user.gift.id" required />
+                </md-input-container>
+              </div>
+              <md-button> ADD </md-button>
+            </div>
           </div>
           
           <div flex>
@@ -70,3 +81,24 @@
     </md-card>
   </form>
 </div>
+
+<!-- if we wanted to repeat
+<div id="gifts">
+  <md-card class="gift"> 
+    <div class="column">
+      <div class="row" layout-align="space-between center" ng-repeat="gift in gifts">
+
+      </div>
+      <div class="row" layout-align="space-between center">
+        <md-button>
+          <md-icon  class="material-icons" 
+                    style="color:#33AA33; font-weight:bold"
+                    ng-class="48"> 
+            add 
+          </md-icon>
+        </md-button>
+      </div>
+    </div>
+  </md-card>
+</div>
+-->
