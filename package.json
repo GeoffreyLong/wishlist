@@ -8,6 +8,10 @@
   "dependencies": {
     "bower": "^1.7.9",
     "express": "~4.9.0",
+    "express-stylus": "^0.1.0",
+    "morgan": "^1.7.0",
+    "nib": "^1.1.2",
+    "passport": "^0.3.2",
     "request": "^2.74.0",
     "stylus": "0.42.3"
   }
