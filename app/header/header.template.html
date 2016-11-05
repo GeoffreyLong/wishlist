@@ -4,8 +4,13 @@
   <div id="name" ng-click="routeToIndex()">
     APPNAME
   </div>
-  <div id="loginContainer">
-    <md-button> login </md-button>
-    <md-button> sign-up </md-button>
+  <div>
+    <div ng-if="!session.user.username" id="loginContainer">
+      <md-button> login </md-button>
+      <md-button> sign-up </md-button>
+    </div>
+    <div ng-if="session.user.username" id="loginContainer">
+      {{session.user.username}}
+    </div>
   </div>
 </md-toolbar>
