@@ -3,10 +3,18 @@ var routes = require('./routes/index');
 var path = require('path');
 var morgan = require('morgan');
 
+var stylus = require('express-stylus');
+var nib = require('nib');
+
 var app = express();
 
 app.use(morgan('dev')); 
 
+app.use(stylus({
+  src: path.join(__dirname, 'app'),
+  use: [nib()],
+  import: ['nib']
+}));
 app.use(express.static(path.join(__dirname, 'app')));
 
 // Ignore requests for favicon
