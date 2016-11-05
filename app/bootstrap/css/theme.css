@@ -299,25 +299,6 @@ figure {
 img {
   vertical-align: middle;
 }
-.crop{
-  postion: relative;
-  float: left;
-  width: 100%;
-  height: auto;
-  overflow: hidden;
-  background-position: 50% 50%;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-.sidePanel{
-  display: block;
-  position: relative;
-  float:left;
-  max-height: 100%;
-  width: auto;
-  margin-left: 75px;
-}
-
 .img-responsive,
 .thumbnail > img,
 .thumbnail a > img,
@@ -482,13 +463,6 @@ p {
 .lead {
   margin-bottom: 22px;
   font-size: 18px;
-  font-weight: 200;
-  line-height: 1.4;
-}
-.lead-right {
-  text-align: right;
-  margin-bottom: 22px;
-  font-size: 24px;
   font-weight: 200;
   line-height: 1.4;
 }

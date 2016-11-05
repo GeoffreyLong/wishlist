@@ -45,7 +45,7 @@ angular.module('index').component('index', {
         'age': 9,
         'description': 'I really like geology and board games.',
         'address': 'Bikini Bottom',
-        'image': 'https://pixabay.com/static/uploads/photo/2015/06/08/05/31/boy-801182_1280.jpg',
+        'image': 'http://albanykid.com/wp-content/uploads/2010/05/herkimer.jpg',
         'gift': {
           'amazonId': 'B00C0ULS3G',
           'title': 'Battleship Game',
@@ -58,7 +58,7 @@ angular.module('index').component('index', {
         'age': 7,
         'description': 'I love going to the beach and swimming.',
         'address': 'Bikini Bottom',
-        'image': 'https://pixabay.com/static/uploads/photo/2016/06/21/11/34/little-girl-1470910_1280.jpg',
+        'image': 'https://lizcooper.files.wordpress.com/2010/09/dsc_0152.jpg',
         'gift': {
           'amazonId': 'B000MDT7KO',
           'title': 'All Surface Swingball with Tether',
@@ -123,7 +123,7 @@ angular.module('index').component('index', {
     $scope.children = chunk(kids);
 
     function chunk(arr) {
-      var size = 2;
+      var size = 3;
       console.log(window.innerWidth);
       if (window.innerWidth > 1500) {
         size = 3;

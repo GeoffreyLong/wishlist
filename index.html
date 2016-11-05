@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="en" ng-app="wishlist">
   <head>
-    <meta charset="utf-8">
+      <meta charset="utf-8">
     <title>WishList</title>
     <base href="/">
+    
     <!-- Angular --> 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
@@ -32,11 +33,47 @@
     <script src="splash/splash.component.js"></script>
     <script src="index/index.module.js"></script>
     <script src="index/index.component.js"></script>
+
+    <!-- Bootstrap core CSS -->
+        <link href="bootstrap/css/theme.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="style.css" rel="stylesheet">
+
+<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Raleway:300,700,900,500' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/typicons/2.0.7/typicons.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/pushy.css">
+        <link rel="stylesheet" href="assets/css/masonry.css">
+        <link rel="stylesheet" href="assets/css/animate.css">
+        <link rel="stylesheet" href="assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="assets/css/odometer-theme-default.css">
+    <!-- our stuff -->
+    <link rel="stylesheet" type="text/css" href="stylesheets/index.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/boostrap.css.map"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="stylesheets/theme.css"/>
+    <script src="app.module.js"></script>
+    <script src="app.config.js"></script>
+
+
+    <script src="header/header.module.js"></script>
+    <script src="header/header.component.js"></script>
+
+    <script src="splash/splash.module.js"></script>
+    <script src="splash/splash.component.js"></script>
+
+    <script src="index/index.module.js"></script>
+    <script src="index/index.component.js"></script>
+
   </head>
   <body>
     <header></header>
     <div id="bodyContainer">
-      <div ng-view><div>
+        <div ng-view><div>
+        <splash></splash>
     </div>
+
   </body>
 </html>
