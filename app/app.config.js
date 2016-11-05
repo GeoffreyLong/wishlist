@@ -17,7 +17,7 @@ angular
         }
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/splash'
       });
     },
   ])

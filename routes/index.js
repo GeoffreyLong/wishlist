@@ -8,7 +8,7 @@ router.get('/', function(req, res) {
 });
 
 
-router.post('/login', function(req, res) {
+router.post('/auth/login', function(req, res) {
   passport.authenticate('local', function(err, user, info) {
     if (err) { 
       console.log(err);
@@ -32,10 +32,19 @@ router.post('/login', function(req, res) {
   })(req, res);
 });
 
-router.get('/logout', function(req, res){
+router.get('/auth/logout', function(req, res){
   // TODO error handling here and on the front end side of this
   req.logout();
   res.status(200).send("");
+});
+
+router.get('/auth/session', function(req, res) {
+  var session = {};
+  session.user = req.user;
+  session.isSessioned = req.session.isSessioned;
+  req.session.isSessioned = true;
+  console.log("hello Session");
+  res.send(session);
 });
 
 module.exports = router;

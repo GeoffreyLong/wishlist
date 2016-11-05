@@ -9,7 +9,7 @@ angular
         data.username = username;
         data.password = password;
         console.log(data);
-        $http.post("/login", data).then(function(user) {
+        $http.post("/auth/login", data).then(function(user) {
           console.log(user);
           session.user = user;
         }, function(err) {
@@ -18,7 +18,7 @@ angular
       }
 
       function logout() {
-        $http.get("/api/auth/logout").then(function (result) {
+        $http.get("/auth/logout").then(function (result) {
           session = null;
           $location.path("/splash");
         }, function (error) {
@@ -33,12 +33,13 @@ angular
 
       function getSession() {
         var deferred = $q.defer();
-        if (session && (session.address || (session.user && session.user._id))) {
+        if (session && (session.user || session.isSessioned)) {
           deferred.resolve(session);
         }
         else {
           getSessionFromDB().then(function(session){
-            if (session && (session.address || (session.user && session.user._id))) {
+            console.log(session);
+            if (session && (session.user || session.isSessioned)) {
               deferred.resolve(session);
             }
             else {
@@ -54,12 +55,13 @@ angular
       // Gets the session object but doesn't update for stores
       function getUserSession() {
         var deferred = $q.defer();
-        if (session && session.user && session.user._id) {
+        if (session && session.user && session.user.username) {
           deferred.resolve(session);
         }
         else {
           getSessionFromDB().then(function(session){
-            if (session && session.user && session.user._id) {
+            console.log(session);
+            if (session && session.user && session.user.username) {
               deferred.resolve(session);
             }
             else{
@@ -75,13 +77,10 @@ angular
       function getSessionFromDB(){
         var deferred = $q.defer();
 
-        $http.get("/api/auth/session").then(function (result) {
+        $http.get("/auth/session").then(function (result) {
             session = result.data;
             deferred.resolve(session);
-            // TODO could speed up using session storage
-            //    $window.sessionStorage["userInfo"] = JSON.stringify(userInfo);
         }, function (error) {
-          // TODO redirect to "Temporary Maintanence page or something"
           console.log("server out");
           deferred.reject({retrieved: false});
         });

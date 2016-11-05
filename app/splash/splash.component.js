@@ -5,6 +5,5 @@ angular.module('splash').component('splash', {
     $scope.user.username = "Geoff";
     $scope.user.password = "Password";
 
-    authService.login($scope.user.username, $scope.user.password);
   }
 });
