@@ -1,0 +1,16 @@
+<div class="importantFixedDiv">
+  <md-button class="importantFixedButton" ng-if="checkOwnership()" ng-click="editUser()">
+    <md-icon class="material-icons"> edit </md-icon> Edit
+  </md-button>
+</div>
+
+<img ng-src="user.profilePhoto"></img>
+<span> {{user.fullName}} </span>
+<span> {{user.description}} </span>
+
+<ng-map center="{{user.address.lat}}, {{user.address.lng}}" zoom="7">
+  <shape id="circle" name="circle" centered="true" 
+        center="{{user.address.lat}}, {{user.address.lng}}"
+        stroke-color='#FF0000' stroke-opacity="0.8" stroke-weight="2" 
+        radius="10000" editable="false" ></shape>
+</ng-map>

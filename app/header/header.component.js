@@ -38,7 +38,7 @@ angular.module('header').component('header', {
               alert("Logged in");
               $("#loginForm").hide();
               $("#signupForm").hide();
-              $location.path('/user/' + data.data);
+              $location.path('/user/' + data.data._id);
             }
             else {
               alert("Please check your username and password");

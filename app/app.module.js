@@ -6,5 +6,6 @@ angular.module('wishlist', [
     'header',
     'index',
     'userEdit',
+    'userProfile',
     'authService'
 ]);
