@@ -1,5 +1,6 @@
 angular.module('wishlist', [
     'ngMaterial',
     'splash',
-    'header'
+    'header',
+    'index'
 ]);
