@@ -47,7 +47,6 @@ angular.module('header').component('header', {
               authService.getUserSession().then(function(session) {
                 $scope.session = session; 
               });
-              alert("Logged in");
               $("#loginForm").hide();
               $("#signupForm").hide();
               $location.path('/user/' + data.data._id);
@@ -73,7 +72,9 @@ angular.module('header').component('header', {
                                 "password": $scope.user.password}).then(function(data) {
               // TODO Should log in too
               console.log(data.data);
-              alert("User created");
+              authService.getUserSession().then(function(session) {
+                $scope.session = session; 
+              });
               $("#loginForm").hide();
               $("#signupForm").hide();
               $location.path('/user/' + data.data + '/edit');

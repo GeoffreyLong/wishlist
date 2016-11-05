@@ -77,6 +77,10 @@ router.get('/auth/logout', function(req, res){
 router.get('/auth/session', function(req, res) {
   var session = {};
   session.user = req.session.user;
+  if (req.user.username) {
+    session.user = {};
+    session.user.username = req.user.username;
+  }
   session.isSessioned = req.session.isSessioned;
   req.session.isSessioned = true;
   console.log("hello Session:");
