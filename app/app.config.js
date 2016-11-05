@@ -3,13 +3,29 @@ angular
   .config(['$locationProvider', '$routeProvider', '$httpProvider', 
     function config ($locationProvider, $routeProvider, $httpProvider) {
 
-    $locationProvider.html5Mode(true).hashPrefix('!');
+    $locationProvider.hashPrefix('!');
     $routeProvider
       .when('/splash', {
         template: '<splash></splash>'
       })
       .when('/', {
         template: '<index></index>',
+        resolve: {
+          auth: function ($q, authService) {
+            return authService.getSession();
+          }
+        }
+      })
+      .when('/user/:userId/edit', {
+        template: '<user-edit></user-edit>',
+        resolve: {
+          auth: function ($q, authService) {
+            return authService.getUserSession();
+          }
+        }
+      })
+      .when('/user/:userId', {
+        template: '<user-profile></user-profile>',
         resolve: {
           auth: function ($q, authService) {
             return authService.getSession();
